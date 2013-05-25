@@ -3,11 +3,11 @@ layout: default
 ---
 <style>
 .CodeMirror {
-  height: auto;
+	height: auto;
 }
 .CodeMirror-scroll {
-  overflow-y: hidden;
-  overflow-x: auto;
+	overflow-y: hidden;
+	overflow-x: auto;
 }
 </style>
 <div class="container-fluid">
@@ -35,7 +35,39 @@ layout: default
 			</ul>
 		</div>
 		<div class="span9">
-			{{ content }}
+			{% assign exampleCode = page.section | prepend:'sections/' | append: '/code/example.html' %}
+			{% assign codeCode = page.section | prepend:'sections/' | append: '/code/code.html' %}
+			{% assign explainCode = page.section | prepend:'sections/' | append: '/code/explain.html' %}
+
+			<div id="example" class="sections">
+				<h2>Example</h2>
+				<p>{{ page.exampleDescription }}</p>
+				<textarea id="html">
+{% include exampleCode %}
+				</textarea>
+			</div>
+
+			<div id="code" class="sections">
+				<div class="btn-group pull-right">
+					<button class="btn btn-primary" id="runCode">Run</button>	
+					<button class="btn btn-primary" id="highlight" data-highlight="{{ page.codeHighlight }}"><i class="icon-eye-open icon-white"></i></button>	
+				</div>
+				<h2>Code</h2>
+				<span class="clearfix"></span>
+				<p>{{ page.codeDescription }}</p>
+				<textarea id="javascript">
+{% include codeCode %}
+				</textarea>
+				<div id="preview" style="display:none;" class="preview"></div>
+			</div>
+
+			<div id="explain" class="sections">
+				<h2>Explain</h2>
+				<p>{{ page.explainDescription }}</p>
+				<textarea id="explainCode">
+{% include explainCode %}
+				</textarea>
+			</div>
 		</div>
 	</div>
 </div>

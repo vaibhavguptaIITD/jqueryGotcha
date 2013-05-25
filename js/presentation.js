@@ -29,13 +29,20 @@ $(function(){
 	}
 
 	//configure code highlight
+	var THEME = "solarized dark";
+
 	var html = CodeMirror.fromTextArea(document.getElementById('html'), {
         mode: 'text/html',
-        theme:"solarized dark"
+        theme:THEME
      });
 	var javascript = CodeMirror.fromTextArea(document.getElementById('javascript'), {
         mode: 'javascript',
-        theme:"solarized dark"
+        theme:THEME
+    });
+
+    var explanationCode = CodeMirror.fromTextArea(document.getElementById('explainCode'), {
+        mode: 'javascript',
+        theme:THEME
     });
 
     $(window).trigger("hashchange");

@@ -1,0 +1,24 @@
+$(".addToCart").click(function(){
+	var othis = $(this),
+	planId = this.id.split("_")[1];
+	removeButton = othis.next();
+	$.ajax({
+		url : "/addPlan/"+planId,
+		success: function(){
+			othis.hide();
+			removeButton.show();
+		}
+	});
+});
+$(".removeFromCart").click(function(){
+	var othis = $(this),
+	planId = this.id.split("_")[1];
+	addButton = othis.prev();
+	$.ajax({
+		url : "/removePlan/"+planId,
+		success: function(){
+			othis.hide();
+			addButton.show();
+		}
+	});
+});

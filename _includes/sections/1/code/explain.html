@@ -1,0 +1,18 @@
+//Ways to make accidental globals
+//Bad
+function myFunction(){
+	var name = "Vaibhav";
+	title = "Dragon";
+}
+
+//Good
+function myFunction(){
+	var name = "Vaibhav";
+	var title = "Dragon";
+}
+
+//Better
+function myFunction(){
+	var name = "Vaibhav",
+	title = "Dragon";
+}
