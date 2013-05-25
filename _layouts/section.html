@@ -58,7 +58,10 @@ layout: default
 				<textarea id="javascript">
 {% include codeCode %}
 				</textarea>
+				<div class="alert alert-error" style="display:none;" id="windowError">
+				</div>
 				<div id="preview" style="display:none;" class="preview"></div>
+				
 			</div>
 
 			<div id="explain" class="sections">
@@ -71,6 +74,7 @@ layout: default
 		</div>
 	</div>
 </div>
+{{ content }}
 <script type="text/javascript" src="/js/presentation.js"></script>
 <script src="/js/lib/jquery.mockjax.js"></script>
 <script type="text/javascript" src="/js/ajaxurls.js"></script>

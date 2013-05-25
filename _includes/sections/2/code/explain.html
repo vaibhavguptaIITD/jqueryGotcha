@@ -1,0 +1,12 @@
+var person = {
+	firstName : "Vaibhav",
+	getPerson : function(){
+		return this.firstName;
+	}
+};
+var firstName = "Gupta";
+
+person.getPerson(); //Returns Vaibhav
+
+var getPerson = person.getPerson;
+getPerson(); //Returns Gupta

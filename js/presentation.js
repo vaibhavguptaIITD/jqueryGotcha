@@ -109,4 +109,8 @@ $(function(){
 		}
 	}
 
+	window.onerror = function(errorMessage){
+		$("#windowError").html(errorMessage).show();
+	};
+
 });
