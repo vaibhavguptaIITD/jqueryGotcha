@@ -18,6 +18,7 @@ $(function(){
 		$(hash).show();
 		$("li.active").removeClass("active");
 		$("a[href="+hash+"]").closest("li").addClass("active");
+		hashCallBack[hash]();
 	}
 	function getHash(url){
 		var pattern = /#([^\s]+)/;
@@ -27,10 +28,19 @@ $(function(){
 		}
 		return null;
 	}
-	$(window).trigger("hashchange");
+	// var hashCallBack = {
+	// 	"#example" : function(){
+	// 		html.refresh();
+	// 	},
+	// 	"#code" : function(){
+	// 		javascript.refresh();
+	// 	}
+	// };
+
+	
 
 	//configure code highlight
-	var editor = CodeMirror.fromTextArea(document.getElementById('html'), {
+	var html = CodeMirror.fromTextArea(document.getElementById('html'), {
         mode: 'text/html',
         theme:"solarized dark"
      });
@@ -39,9 +49,11 @@ $(function(){
         theme:"solarized dark"
     });
 
+    $(window).trigger("hashchange");
+
 	//configure code sandbox
 	$("#runCode").click(function(){
-		var bodyText = editor.getValue(),
+		var bodyText = html.getValue(),
 		scriptText = javascript.getValue(),
 		htmlTemplate = "{{{body}}}<script>{{{script}}}</script>",
 		template = Handlebars.compile(htmlTemplate);
