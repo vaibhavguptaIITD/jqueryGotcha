@@ -1,0 +1,20 @@
+.sideNav {
+	font-size:20px;
+}
+.sideNav > li:first-child > a {
+	border-radius:6px 6px 0 0;
+}
+
+.sideNav > li > a {
+  border: 1px solid #E5E5E5;
+  display: block;
+  margin: 0 0 -1px;
+  padding: 8px 14px;
+}
+
+.sideNav .icon-chevron-right {
+  float: right;
+  margin-right: -6px;
+  margin-top: 2px;
+  opacity: 0.25;
+}
