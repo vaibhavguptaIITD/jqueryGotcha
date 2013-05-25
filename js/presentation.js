@@ -1,6 +1,6 @@
 $(function(){
 	//configure hashes
-	var sections = $(".sections > div");
+	var sections = $(".sections");
 	window.onhashchange = function(){
 		handleHashChange();
 	};
@@ -18,7 +18,6 @@ $(function(){
 		$(hash).show();
 		$("li.active").removeClass("active");
 		$("a[href="+hash+"]").closest("li").addClass("active");
-		hashCallBack[hash]();
 	}
 	function getHash(url){
 		var pattern = /#([^\s]+)/;
@@ -28,16 +27,6 @@ $(function(){
 		}
 		return null;
 	}
-	// var hashCallBack = {
-	// 	"#example" : function(){
-	// 		html.refresh();
-	// 	},
-	// 	"#code" : function(){
-	// 		javascript.refresh();
-	// 	}
-	// };
-
-	
 
 	//configure code highlight
 	var html = CodeMirror.fromTextArea(document.getElementById('html'), {
@@ -60,5 +49,57 @@ $(function(){
 		var output = template({body: bodyText, script: scriptText});
 		$("#preview").html(output).show();
 	});
+
+	$("#highlight").click(function(){
+		var $this = $(this),
+		$childIcon = $this.find("i"),
+		linesToHighlight = $this.attr("data-highlight"),
+		linesToHighlightArray = getNumberArrayFromDelimitedString(linesToHighlight);
+		if($childIcon.hasClass("icon-white")){
+			highlightCode(linesToHighlightArray);
+			$childIcon.removeClass("icon-white");
+		}
+		else{
+			unhighlightCode(linesToHighlightArray);
+			$childIcon.addClass("icon-white");
+		}
+	});
+
+	function getNumberArrayFromDelimitedString(str){
+		var pattern = /\d+/g,
+		matches = null,
+		numberArray = [];
+		while(matches = pattern.exec(str)){
+			numberArray.push(parseInt(matches[0], 10));
+		}
+		return numberArray;
+
+	}
+
+	function highlightCode(linesToHighlightArray){
+		var totalLineCount = javascript.lineCount(),
+		i = 0;
+		for(; i < totalLineCount; i++){
+			if(linesToHighlightArray.indexOf(i) == -1){
+				javascript.addLineClass(i, "wrap","dim");
+			}
+			else{
+				javascript.addLineClass(i, "wrap","highlight");
+			}
+		}
+	}
+
+	function unhighlightCode(linesToHighlightArray){
+		var totalLineCount = javascript.lineCount(),
+		i = 0;
+		for(; i < totalLineCount; i++){
+			if(linesToHighlightArray.indexOf(i) == -1){
+				javascript.removeLineClass(i, "wrap","dim");
+			}
+			else{
+				javascript.removeLineClass(i, "wrap","highlight");
+			}
+		}
+	}
 
 });

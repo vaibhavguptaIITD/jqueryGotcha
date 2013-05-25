@@ -1,7 +1,15 @@
 ---
 layout: default
 ---
-
+<style>
+.CodeMirror {
+  height: auto;
+}
+.CodeMirror-scroll {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+</style>
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span3">
@@ -26,7 +34,7 @@ layout: default
 				</li>
 			</ul>
 		</div>
-		<div class="span9 sections">
+		<div class="span9">
 			{{ content }}
 		</div>
 	</div>

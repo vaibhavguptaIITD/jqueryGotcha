@@ -31,9 +31,13 @@ title: Gotcha 1
 	</textarea>
 </div>
 <div id="code" class="sections">
+	<div class="btn-group pull-right">
+		<button class="btn btn-primary" id="runCode">Run</button>	
+		<button class="btn btn-primary" id="highlight" data-highlight="3, 8, 15, 20"><i class="icon-eye-open icon-white"></i></button>	
+	</div>
+	
 	<h2>Code</h2>
-	<button class="btn btn-primary .pull-right" id="runCode">Run</button>
-	<div class="clearfix"></div>
+	<span class="clearfix"></span>
 	<p>We attached click event handlers to the buttons. Following is the javascript code:</p>
 	<textarea id="javascript">
 	$(".addToCart").click(function(){
@@ -61,7 +65,7 @@ title: Gotcha 1
 		});
 	});
 	</textarea>
-	<div id="preview" style="display:none;"></div>
+	<div id="preview" style="display:none;" class="preview"></div>
 </div>
 <div id="explain" class="sections">
 	<h2>Explain</h2>

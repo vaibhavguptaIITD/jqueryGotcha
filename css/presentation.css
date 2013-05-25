@@ -1,5 +1,6 @@
 .sideNav {
 	font-size:20px;
+  margin: 30px 0 0
 }
 .sideNav > li:first-child > a {
 	border-radius:6px 6px 0 0;
@@ -17,4 +18,21 @@
   margin-right: -6px;
   margin-top: 2px;
   opacity: 0.25;
+}
+
+.preview {
+  background-color: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px 4px 4px 4px;
+  margin: 15px 0;
+  padding: 39px 19px 14px;
+  position: relative;
+}
+
+.dim, .dim span {
+  color: #586E75 !important;
+}
+
+.highlight, .highlight span{
+  color: white !important;
 }
