@@ -35,6 +35,7 @@ layout: default
 			</ul>
 		</div>
 		<div class="span9">
+			{% assign totalSection = 10 %}
 			{% assign exampleCode = page.section | prepend:'sections/' | append: '/code/example.html' %}
 			{% assign codeCode = page.section | prepend:'sections/' | append: '/code/code.html' %}
 			{% assign explainCode = page.section | prepend:'sections/' | append: '/code/explain.html' %}
@@ -80,7 +81,17 @@ layout: default
 				</div>
 				<div id="preview" style="display:none;" class="preview"></div>
 			</div>
+			<hr></hr>
+			<div class="pull-right nextPrevPanel">
+				{% if page.section > 1 %}
+				<a href="/sections/{{ page.section | minus: 1 }}" class="btn btn-inverse">Previous</a>
+				{% endif %}
+				{% if page.section < totalSection %}
+				<a href="/sections/{{ page.section | plus: 1 }}" class="btn">Next</a>
+				{% endif %}
+			</div>
 
+			<div class="clearfix"></div>
 		</div>
 	</div>
 </div>
