@@ -1,0 +1,9 @@
+var $totalEmployeesRows = $("#employeeTable tbody tr"),
+totalEmployees = $totalEmployeesRows.length;
+for(var i = 0; i < totalEmployees; i++){
+	var $employeeRow = $($totalEmployeesRows.get(i)),
+	$deleteIcon = $employeeRow.find("._deleteEmployee");
+	$deleteIcon.click(function(){
+		$employeeRow.remove();
+	});
+}

@@ -9,6 +9,7 @@ $(function(){
 		sections.hide();
 		if(hash){
 			showSection(hash);
+			clearPreview();
 			return;
 		}
 		location.hash = "#"+sections.get(0).id;
@@ -28,34 +29,58 @@ $(function(){
 		return null;
 	}
 
+	var clearPreview = (function(){
+		var $errorContainer = $("#windowError"),
+		$logContainer = $("#log"),
+		$preview = $("#preview");
+		return function(){
+			$errorContainer.hide().find("p.message").empty();
+			$logContainer.hide().find("p.message").empty();
+			$preview.hide().empty();
+		};
+	}());
+
+
 	//configure code highlight
 	var THEME = "solarized dark";
 
 	var html = CodeMirror.fromTextArea(document.getElementById('html'), {
-        mode: 'text/html',
-        theme:THEME
-     });
+		mode: 'text/html',
+		theme:THEME
+	});
 	var javascript = CodeMirror.fromTextArea(document.getElementById('javascript'), {
-        mode: 'javascript',
-        theme:THEME
-    });
+		mode: 'javascript',
+		theme:THEME
+	});
 
-    var explanationCode = CodeMirror.fromTextArea(document.getElementById('explainCode'), {
-        mode: 'javascript',
-        theme:THEME
-    });
+	var explanationCode = CodeMirror.fromTextArea(document.getElementById('explainCode'), {
+		mode: 'javascript',
+		theme:THEME
+	});
 
-    $(window).trigger("hashchange");
+	$(window).trigger("hashchange");
 
 	//configure code sandbox
 	$("#runCode").click(function(){
 		var bodyText = html.getValue(),
-		scriptText = javascript.getValue(),
-		htmlTemplate = "{{{body}}}<script>{{{script}}}</script>",
-		template = Handlebars.compile(htmlTemplate);
-		var output = template({body: bodyText, script: scriptText});
-		$("#preview").html(output).show();
+		scriptText = javascript.getValue();
+		runCode(bodyText, scriptText);
 	});
+
+	$("#runExample").click(function(){
+		var scriptText = explanationCode.getValue();
+		runCode("", scriptText);
+	});
+
+	var runCode = (function(){
+		var htmlTemplate = "{{{body}}}<script>{{{script}}}</script>",
+		template = Handlebars.compile(htmlTemplate),
+		$preview = $("#preview");
+		return function(bodyText, scriptText){
+			var output = template({body: bodyText, script: scriptText});
+			$preview.html(output).show();
+		};
+	}());
 
 	$("#highlight").click(function(){
 		var $this = $(this),
@@ -108,9 +133,29 @@ $(function(){
 			}
 		}
 	}
-
-	window.onerror = function(errorMessage){
-		$("#windowError").html(errorMessage).show();
-	};
+	$(".alert  > .close").click(function(){
+		var $this = $(this);
+		$this.closest(".alert").hide().find("p.message").empty();
+	});
 
 });
+
+window.onerror = (function(){
+	var $logContainer = $("#windowError");
+	return function(message){
+		logMessage($logContainer, message);
+	};
+}());
+
+var log = (function(){
+	var $logContainer = $("#log");
+	return function(message){
+		logMessage($logContainer, message);
+	};
+}());
+
+function logMessage($container, message){
+	var $p = $container.find("p.message");
+	$p.append("<p>"+message+"</p>");
+	$container.show();
+}

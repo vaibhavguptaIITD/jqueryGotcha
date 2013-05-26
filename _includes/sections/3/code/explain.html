@@ -1,0 +1,12 @@
+//Closure with IIFE
+var doubleIncrementor = (function(){
+	var increment = 2; //Private variable
+	return function(x){
+		return x + increment;
+	};
+}());
+
+log(increment); //undefined
+
+
+
