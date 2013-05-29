@@ -1,0 +1,8 @@
+$(".dropdown").hover(function(){
+	var $this = $(this);
+	$this.find(".dropdown-menu").slideDown();
+},
+function(){
+	var $this = $(this);
+	$this.find(".dropdown-menu").slideUp();
+});
