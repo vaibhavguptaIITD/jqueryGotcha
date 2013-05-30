@@ -1,0 +1,9 @@
+//Escape special characters with \\
+$("#registeredUser\\.name");
+
+//A utility method which escapes all special characters
+var  escapeSpecialChars =  function(str) {
+    return str.replace(/([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, '\\$1');
+};
+
+escapeSpecialChars("registeredUser.name"); //returns "registeredUser\\.name"

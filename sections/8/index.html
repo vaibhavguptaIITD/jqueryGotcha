@@ -1,0 +1,25 @@
+---
+layout: section
+title: Gotcha 8
+section: 8
+codeHighlight: 3
+---
+<script>
+	function addEmployee(){
+		var firstNameInput = $("#fName"),
+		lastNameInput = $("#lName"),
+		codeInput = $("#employeeCode"),
+		employeeTable = $("#employeeTable"),
+		row = 	"<tr><td>"+firstNameInput.val()+"</td><td>"+lastNameInput.val()+"</td><td>"+codeInput.val()+"</td>"+
+				"<td><a class='btn _deleteEmployee'><i class='icon-remove'></i></a></td></tr>";
+		employeeTable.append(row);
+		firstNameInput.val("");
+		lastNameInput.val("");
+		codeInput.val("");
+	}
+
+	function deleteEmployee(deleteBtn){
+		$(deleteBtn).closest("tr").remove();
+	}
+</script>
+

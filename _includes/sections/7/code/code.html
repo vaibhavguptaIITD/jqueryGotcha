@@ -1,0 +1,14 @@
+var Conference = {
+	participants: [],
+	registerParticipant: function() {
+		var $nameInput = $("#registeredUser.name"),
+		name = $nameInput.val();
+		this.participants.push(name);
+		log("Thanks for registering " + name);
+		$nameInput.val("");
+	}
+};
+
+$("#submit").on("click", function(){
+	Conference.registerParticipant();
+});

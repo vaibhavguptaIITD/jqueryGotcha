@@ -1,0 +1,13 @@
+$("#employeeTable").on("click","._deleteEmployee", function(){ //jquery 1.7+
+	//perform some stuff here
+});
+
+$("#employeeTable").delegate("._deleteEmployee","click", function(){ // jQuery 1.4.3+
+	//perform some stuff here
+});
+
+$("._deleteEmployee").live("click", function(){ // jQuery 1.3+, depricated since jQuery 1.7
+	//perform some stuff here
+});
+
+
