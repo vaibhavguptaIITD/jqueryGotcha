@@ -39,9 +39,13 @@ layout: default
 			{% assign exampleCode = page.section | prepend:'sections/' | append: '/code/example.html' %}
 			{% assign codeCode = page.section | prepend:'sections/' | append: '/code/code.html' %}
 			{% assign explainCode = page.section | prepend:'sections/' | append: '/code/explain.html' %}
+			{% assign exampleDescription = page.section | prepend:'sections/' | append: '/description/example.html' %}
+			{% assign codeDescription = page.section | prepend:'sections/' | append: '/description/code.html' %}
+			{% assign explainDescription = page.section | prepend:'sections/' | append: '/description/explain.html' %}
 
 			<div id="example" class="sections">
 				<h2>Example</h2>
+				{% include exampleDescription %}
 				<p class="lead">{{ page.exampleDescription }}</p>
 				<textarea id="html">
 {% include exampleCode %}
@@ -55,7 +59,7 @@ layout: default
 				</div>
 				<h2>Code</h2>
 				<span class="clearfix"></span>
-				<p class="lead">{{ page.codeDescription }}</p>
+				{% include codeDescription %}
 				<textarea id="javascript">
 {% include codeCode %}
 				</textarea>
@@ -65,7 +69,7 @@ layout: default
 				<button class="btn btn-primary pull-right" id="runExample">Run</button>	
 				<h2>Explain</h2>
 				<span class="clearfix"></span>
-				<p class="lead">{{ page.explainDescription }}</p>
+				{% include explainDescription %}
 				<textarea id="explainCode">
 {% include explainCode %}
 				</textarea>
