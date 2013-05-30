@@ -1,0 +1,17 @@
+//Conventional way
+$("#submit").on("click", function(){
+	Conference.registerParticipant();
+});
+
+//call method: call(context, arg1, arg2, arg3...)
+var obj = {
+	participants: ["Vaibhav"]
+};
+$("#submit").on("click", function(){
+	Conference.registerParticipant.call(obj);
+});
+
+//apply method: apply(context, [arg1, arg2, arg3])
+$("#submit").on("click", function(){
+	Conference.registerParticipant.apply(obj);
+});
