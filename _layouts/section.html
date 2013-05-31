@@ -35,7 +35,7 @@ layout: default
 			</ul>
 		</div>
 		<div class="span9">
-			{% assign totalSection = 10 %}
+			{% assign totalSection = 8 %}
 			{% assign exampleCode = page.section | prepend:'sections/' | append: '/code/example.html' %}
 			{% assign codeCode = page.section | prepend:'sections/' | append: '/code/code.html' %}
 			{% assign explainCode = page.section | prepend:'sections/' | append: '/code/explain.html' %}
@@ -92,6 +92,9 @@ layout: default
 				{% endif %}
 				{% if page.section < totalSection %}
 				<a href="/sections/{{ page.section | plus: 1 }}" class="btn">Next</a>
+				{% endif %}
+				{% if page.section == totalSection %}
+				<a href="/thanks" class="btn">Finish</a>
 				{% endif %}
 			</div>
 
